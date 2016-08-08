@@ -1,45 +1,57 @@
-<h1>BurgerTime</h1>
 
-<h2>Fresh burgers:</h2>
-<ul>
-  {{#each burgers}}
-    {{#unless this.devoured}}
-      <li>
-        {{this.burger_name}}
+<h1 class="header">It's Burger Time!</h1>
 
-        <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="true">
-          <button type="submit">DEVOUR!</button>
-        </form>
+<div class="container">
+  <div class="row">
+    <div id="burgers" class="card-panel col s12 m6">
+      <h4>Fresh burgers:</h4>
+      <ul>
+        {{#each burgers}}
+          {{#unless this.devoured}}
+            <li>
+              {{this.burger_name}}
 
-      </li>
-    {{/unless}}
-  {{/each}}
-</ul>
+              <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="true">
+                <button class="waves-effect waves-light btn pom" type="submit">DEVOUR!</button>
+              </form>
 
-<h2>Burgers you've eaten:</h2>
+            </li>
+          {{/unless}}
+        {{/each}}
+      </ul>
+            <img class="burger" src="/assets/img/hamburgerIcon.png"/>
 
-<ul>
-  {{#each burgers}}
-    {{#if this.devoured}}
-      <li>
-        {{this.burger_name}}
+    </div>
+    <div class="card-panel col s12 m4 offset-m1">
+      <h4>Burgers you've eaten:</h4>
 
-        <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="false">
-          <button type="submit">Make another one!</button> 
-        </form>
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
+      <ul>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <li>
+              {{this.burger_name}}
 
-<h2>Add a Burger</h2>
-<form class="create-update-form" action="burgers/create" method="POST">
+              <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="false">
+                <button class='waves-effect waves-light btn pom' type="submit">Make another one!</button> 
+              </form>
+            </li>
+          {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+    <div class="card-panel col s12 m4 offset-m1">
+      <h4>Cook a Burger</h4>
+      <form class="create-update-form" action="burgers/create" method="POST">
 
-  <div class="form-group">
-    <label for="burg">Burger Name:</label>
-    <input type="text" id="burg" name="burger_name">
+        <div class="form-group">
+          <label for="burg">Burger Name:</label>
+          <input type="text" id="burg" name="burger_name">
+        </div>
+        <button class='waves-effect waves-light btn pom' type="submit">Add Burger</button>
+      </form>
+    </div>
+    </div>
   </div>
-  <button type="submit">Add Burger</button>
-</form>
+</div>
